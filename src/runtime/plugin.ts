@@ -49,7 +49,7 @@ export default defineNuxtPlugin(async () => {
       headers: {
         Accept: 'application/json',
         [config.csrf.headerKey]: !config.token
-          ? useCookie(config.csrf.cookieKey).value
+          ? decodeURIComponent(useCookie(config.csrf.cookieKey).value)
           : null,
         Authorization: config.token ? 'Bearer ' + auth.value.token : null
       } as HeadersInit
@@ -113,7 +113,7 @@ export default defineNuxtPlugin(async () => {
         headers: {
           Accept: 'application/json',
           [config.csrf.headerKey]: !config.token
-            ? useCookie(config.csrf.cookieKey).value
+            ? decodeURIComponent(useCookie(config.csrf.cookieKey).value)
             : null,
           Authorization: config.token ? 'Bearer ' + auth.value.token : null
         } as HeadersInit
